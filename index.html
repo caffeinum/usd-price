@@ -5,8 +5,8 @@
   <title>USD Price Tracker</title>
   <script src="https://cdn.plot.ly/plotly-latest.js"></script>
   <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-  <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
-  <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+  <!-- <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+  <script src="https://d3js.org/d3-fetch.v1.min.js"></script> -->
 
   <script type="text/javascript" language="javascript">
     const api_url = "/data.json"//https://blockchain.info/charts/market-price?format=json&timespan=60days"
@@ -41,7 +41,7 @@
         y: [1,2,4,8,16],
       }
 
-      const data = await get(api_url)
+      const data = await fetch(api_url)
 
 
 

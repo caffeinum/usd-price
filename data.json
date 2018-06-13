@@ -1,6 +1,3 @@
-// 20180613132246
-// https://blockchain.info/charts/market-price?timespan=120days&format=json
-
 {
   "status": "ok",
   "name": "Market Price (USD)",
