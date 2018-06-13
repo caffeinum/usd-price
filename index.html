@@ -40,7 +40,10 @@
       if (!data || !data.values) return
 
       const x = data.values.map( point => point.x )
-      const y = data.values.map( point => point.y )
+      const y = data.values
+        .map( point => point.y )
+        .map( price => 1/price )
+        // convert BTC/USD to USD/BTC
 
       const trace = { x, y }
 
