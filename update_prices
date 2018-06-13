@@ -1,5 +1,7 @@
 URL='https://blockchain.info/charts/market-price?timespan=120days&format=json'
 
+cd /Users/caffeinum/Web/usd-price
+
 curl $URL -o data.json
 
 git add .
