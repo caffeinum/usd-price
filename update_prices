@@ -5,3 +5,5 @@ curl $URL -o data.json
 git add .
 git commit -m "update data"
 
+git push
+
