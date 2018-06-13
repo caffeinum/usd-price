@@ -4,13 +4,11 @@
   <meta charset="utf-8">
   <title>USD Price Tracker</title>
   <script src="https://cdn.plot.ly/plotly-latest.js"></script>
-  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-  <!-- <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
-  <script src="https://d3js.org/d3-fetch.v1.min.js"></script> -->
 
   <script type="text/javascript" language="javascript">
-    const api_url = "/data.json"//https://blockchain.info/charts/market-price?format=json&timespan=60days"
+    const api_url = "/data.json"
     window.onload = function () {
+      updatePlot()
       window.redraw = setInterval(updatePlot, 10000)
     };
 
@@ -27,26 +25,27 @@
             }
           }
         }
-        req.withCredentials = true
-        req.setRequestHeader('X-PINGOTHER', 'pingpong')
-        // req.setRequestHeader('Content-Type', 'application/json')
         req.send()
       })
     }
     async function updatePlot() {
       let price_plot = document.getElementById('price_plot')
 
-      let trace = {
-        x: [1,2,3,4,5],
-        y: [1,2,4,8,16],
-      }
+      // let trace = {
+      //   x: [1,2,3,4,5],
+      //   y: [1,2,4,8,16],
+      // }
 
-      const data = await fetch(api_url)
+      const data = await get(api_url)
+      if (!data || !data.values) return
 
+      const x = data.values.map( point => point.x )
+      const y = data.values.map( point => point.y )
 
+      const trace = { x, y }
 
       plotXY(price_plot, trace)
-      console.log('updated', data)
+      console.log('updated', data.values)
     }
 
     function plotXY(plot, data) {
