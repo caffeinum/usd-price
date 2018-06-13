@@ -29,12 +29,9 @@
       })
     }
     async function updatePlot() {
-      let price_plot = document.getElementById('price_plot')
+      const price_plot = document.getElementById('price_plot')
+      const price_div = document.getElementById('price')
 
-      // let trace = {
-      //   x: [1,2,3,4,5],
-      //   y: [1,2,4,8,16],
-      // }
 
       const data = await get(api_url)
       if (!data || !data.values) return
@@ -42,12 +39,15 @@
       const x = data.values.map( point => point.x )
       const y = data.values
         .map( point => point.y )
-        .map( price => 1/price )
-        // convert BTC/USD to USD/BTC
+        .map( price => 1000/price )
+        // convert BTC/USD to USD/mBTC
+
+      const currentPrice = y.slice(-1).pop() // mBTC per USD
 
       const trace = { x, y }
 
       plotXY(price_plot, trace)
+      printPrice(price_div, currentPrice)
       console.log('updated', data.values)
     }
 
@@ -55,6 +55,10 @@
       data.type = 'scatter'
 
       Plotly.newPlot(price_plot, [ data ]);
+    }
+
+    function printPrice(div, price) {
+      div.innerHTML = `${price} USD/mBTC`
     }
   </script>
   <style type="text/css">
