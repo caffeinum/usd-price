@@ -6,10 +6,6 @@
   "description": "Average USD market price across major bitcoin exchanges.",
   "values": [
     {
-      "x": 1522886400,
-      "y": 6826.509999999999
-    },
-    {
       "x": 1522972800,
       "y": 6603.876666666667
     },
