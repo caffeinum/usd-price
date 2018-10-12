@@ -1,6 +1,6 @@
 URL='https://blockchain.info/charts/market-price?timespan=120days&format=json'
 
-cd /Users/caffeinum/Web/usd-price
+cd /Users/caffeinum/usd-price
 
 curl $URL -o data.json
 
