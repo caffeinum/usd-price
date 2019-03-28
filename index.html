@@ -48,10 +48,10 @@
 
       const y = data.values
         .map( point => point.y )
-        .map( price => 1000/price )
-        // convert BTC/USD to USD/mBTC
+        .map( price => 1e8 / price )
+        // convert BTC/USD to USD/satoshi
 
-      const currentPrice = y.slice(-1).pop() // mBTC per USD
+      const currentPrice = y.slice(-1).pop() // satoshi per USD
 
       const trace = { x, y }
 
@@ -67,7 +67,7 @@
     }
 
     function printPrice(div, price) {
-      div.innerHTML = `1 USD worth ${price.toPrecision(4)} mBTC`
+      div.innerHTML = `1 USD worth ${Number(price).toFixed(0)} satoshis`
     }
   </script>
   <style type="text/css">
